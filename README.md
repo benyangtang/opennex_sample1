@@ -9,6 +9,7 @@
   - scipy
   - pyferret
   - flask
+- The Container image is in the Docker hub: benyang22/opennex_docker .
 # Your own code
 - The files of your own code are stored in a directory outside of the Docker image, and and the directory is mounted when the Docker container is launched.
 - So this Docker image can be used for any code as long as the following simple rules are observed:
@@ -16,7 +17,7 @@
  - The parameters passed into those functions are the same as the the parameters specified in the api call.
 
 # How to use it?
-- A simple user code can be check out:
+- A simple user code can be check out from github:
 ```sh
 git clone https://github.com/benyangtang/opennex_sample1.git
 ```
