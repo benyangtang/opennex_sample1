@@ -1,14 +1,14 @@
 - This Docker image is for easily publishing your algorithms in Python online, making them callable through REST api.
 - The Docker image has the following packages and their dependencies installed:
- - python=2.7 
- - numpy 
- - cartopy
- - xarray
- - matplotlib
- - netCDF4
- - scipy
- - pyferret
- - 
+  - python=2.7 
+  - numpy 
+  - cartopy
+  - xarray
+  - matplotlib
+  - netCDF4
+  - scipy
+  - pyferret
+  - flask
 # Your own code
 - The files of your own code are stored in a directory outside of the Docker image, and and the directory is mounted when the Docker container is launched.
 - So this Docker image can be used for any code as long as the following simple rules are observed:
