@@ -1,3 +1,7 @@
+# Prerequisites
+- 
+
+# What does the Docker image contain?
 - This Docker image is for easily publishing your algorithms in Python online, making them callable through REST api.
 - The Docker image has the following packages and their dependencies installed:
   - python=2.7 
