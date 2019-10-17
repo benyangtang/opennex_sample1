@@ -1,2 +1,3 @@
 ferret.jnl.*
 *.pyc
+.*.sw?
