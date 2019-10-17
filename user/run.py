@@ -45,7 +45,7 @@ def app1(a=1,b=2, outDir=''):
   data='https://sst.jpl.nasa.gov/myocean/SST/images2/20180424/SST_20180424_blended_Global.png'
   return mes, img, data
 
-def app3(nc_file='', var_name='tmn', k=1, l=1, outDir=''):
+def app3z(nc_file='', var_name='tmn', k=1, l=1, outDir=''):
   # init_ferret
   import pyferret as pf
   pf.start(quiet=True, unmapped=True)
@@ -103,7 +103,7 @@ def app2(nc_file='', outDir=''):
   ok1 = checkNc2.checkNc(nc_file, dict1, allowOverwrite=0)
   return dict1['check']+dict1['message'], None, None
 
-def app2a(nc_file='', outDir=''):
+def app2b(nc_file='', outDir=''):
   import subprocess 
 
   temp1 = 'ncdump -c %s'%nc_file
@@ -114,7 +114,7 @@ def app2a(nc_file='', outDir=''):
 
 
 #def_app3a(nc_file='', var_name=None, k=1, l=1, outDir=''):
-def app3a(nc_file='', var_name=None, k=1, l=1, outDir=''):
+def app3(nc_file='', var_name=None, k=1, l=1, outDir=''):
   # checkNc
   import checkNc2
   
