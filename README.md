@@ -41,10 +41,12 @@ export USER_DIR=/home/ubuntu/opennex_sample1/user
 export STATIC_DIR=myDirToStoreResult
 docker run -it -d --name nex -p 5003:5000 --rm -v $USER_DIR:/app_dir/user -v $STATIC_DIR:/app_dir/user/static opennexfree/opennex_docker:v01 
 ```
-- Now your Python functions are available to be called by either:
-* From a terminal: 
+# Now your Python functions are available to be called by either from a terminal, or from a browser.
+
+A server running the example code can be tested:
+- by a command line:
 ```sh
-curl 'http://TheIpAddressOfYourHost:5003/app1?a=2&b=3'
+curl 'http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app3?nc_file="https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/aviso/L4/dynamic_topo_1deg_1mo/zos_AVISO_L4_199210-201012.nc"'
 ```
-* Or from a browser:
-  http://TheIpAddressOfYourHost:5003/app1?a=2&b=3
+- [Or from a browser](http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app3?nc_file="https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/aviso/L4/dynamic_topo_1deg_1mo/zos_AVISO_L4_199210-201012.nc").
+ 
