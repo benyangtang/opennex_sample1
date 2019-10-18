@@ -1,6 +1,6 @@
-# Prerequisites. For a server to run a Docker container and to serve an API, the followings are needed:
-- Docker engine. [Instruction to install Docker engine for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-- An openned inbound port. In the example here, the openned inbound port is 5003. [If the server is an AWS EC2 instance, see here for openning inbound ports](https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/)
+# Prerequisites. For a server to run a Docker container and to serve an API, the following are needed:
+- Docker engine. [Instruction to install Docker engine for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
+- An openned inbound port. In the example here, the openned inbound port is 5003. [If the server is an AWS EC2 instance, see here for instruction to open inbound ports](https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/).
 
 # What does the Docker image contain?
 - This Docker image is for easily publishing your algorithms written in Python online, allowing them to be callable through REST api.
