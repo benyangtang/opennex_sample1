@@ -42,9 +42,9 @@ export STATIC_DIR=myDirToStoreResult
 docker run -it -d --name nex -p 5003:5000 --rm -v $USER_DIR:/app_dir/user -v $STATIC_DIR:/app_dir/user/static opennexfree/opennex_docker:v01 
 ```
 - Now your Python functions are available to be called by either:
-  From a terminal: 
+* From a terminal: 
 ```sh
 curl 'http://TheIpAddressOfYourHost:5003/app1?a=2&b=3'
 ```
-  Or from a browser:
+* Or from a browser:
   http://TheIpAddressOfYourHost:5003/app1?a=2&b=3
