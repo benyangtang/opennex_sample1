@@ -16,12 +16,13 @@
   - flask
 - The Container image is in the Docker hub: opennexfree/opennex_docker .
 # Your own code
-- The files of your own code are stored in a directory outside of the Docker image, and and the directory is mounted when the Docker container is launched.
+- The files of your own code are stored in a directory outside of the Docker image, and the directory is mounted when the Docker container is launched.
 - So this Docker image can be used for any code as long as the following simple rules are observed:
   - The interface to the docker is a file called run.py, which contains up to ten functions from `app1()` to `app10()`, corresponding to /app1 to /app10 in the REST api, and performing different algoritms.
   - The parameters passed into those functions are the same as the the parameters specified in the api call.
   - Those functions also take an addictional parameter `outDir` specifying the directory to store the result.
   - Those functions return a tuple of 3 elements: a text string of text output, a string containing the path of an image file, a string containing the path of a data file. Any of the elements can be `None`.
+  - The REST api returns a json object with 3 key/value pairs, corresponding to the tuple mentioned above: `{'message': messageStr, 'plotUrl': PlotUrlStr, 'dataUrl': dataUrlStr}` .
 
 # What are in this sample code?
 - The sample run.py has three functions: app1(), app2() and app3():
@@ -46,7 +47,11 @@ docker run -it -d --name nex -p 5003:5000 --rm -v $USER_DIR:/app_dir/user -v $ST
 A server running the example code can be tested:
 - by a command line:
 ```sh
-curl 'http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app3?nc_file="https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/aviso/L4/dynamic_topo_1deg_1mo/zos_AVISO_L4_199210-201012.nc"'
+# for app1:
+curl 'http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app1?a=1&b=10'
+
+# for app3:
+curl 'http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app3?nc_file=https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/aviso/L4/dynamic_topo_1deg_1mo/zos_AVISO_L4_199210-201012.nc'
 ```
-- [Or from a browser](http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app3?nc_file="https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/aviso/L4/dynamic_topo_1deg_1mo/zos_AVISO_L4_199210-201012.nc").
+- Or from a browser. [app1](http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app1?a=1&b=100) [app3](http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/app3?nc_file=https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/aviso/L4/dynamic_topo_1deg_1mo/zos_AVISO_L4_199210-201012.nc).
  
