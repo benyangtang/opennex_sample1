@@ -1,6 +1,7 @@
 '''
 #def_app3a
   # use_ferret
+# def_app4(nc_file='', outDir=''):
 
 '''
 import os
@@ -41,8 +42,8 @@ a3,a3,
 
 def app1(a=1,b=2, outDir=''):
   mes='a=%f    b=%f    a+b = %f'%(float(a), float(b), float(a) + float(b))
-  img='https://sst.jpl.nasa.gov/myocean/SST/images2/20180424/SST_20180424_blended_Global.png'
-  data='https://sst.jpl.nasa.gov/myocean/SST/images2/20180424/SST_20180424_blended_Global.png'
+  img=None
+  data=None
   return mes, img, data
 
 def app3z(nc_file='', var_name='tmn', k=1, l=1, outDir=''):
@@ -85,13 +86,6 @@ def app3z(nc_file='', var_name='tmn', k=1, l=1, outDir=''):
   figFile = 'http://ec2-13-56-153-11.us-west-1.compute.amazonaws.com:5003/%s'%figFile1
   return mess, figFile, None
 
-def app2a(nc_file='', outDir=''):
-  import subprocess
-  temp1 = ['ncdump', '-c', nc_file] 
-  stdout1 = subprocess.Popen(temp1)
-
-  return stdout1, None, None
-
 def app2(nc_file='', outDir=''):
   import checkNc2
   
@@ -103,14 +97,21 @@ def app2(nc_file='', outDir=''):
   ok1 = checkNc2.checkNc(nc_file, dict1, allowOverwrite=0)
   return dict1['check']+dict1['message'], None, None
 
-def app2b(nc_file='', outDir=''):
+# def_app4(nc_file='', outDir=''):
+def app4(nc_file='', outDir=''):
   import subprocess 
+  import shlex 
 
-  temp1 = 'ncdump -c %s'%nc_file
+  ncdumpBin = '/opt/conda/bin/ncdump'
+  temp1a = '%s -c %s'%(ncdumpBin, nc_file)
+  #temp1a = 'ls -la'
+  temp1 = shlex.split(temp1a)
   print temp1
-  stdOut = subprocess.Popen(temp1)
-
-  return stdOut, None, None
+  sp = subprocess.Popen(temp1,stdout = subprocess.PIPE)
+  sp.wait()
+  stdOut1, err = sp.communicate()
+  print(stdOut1)
+  return stdOut1, None, None
 
 
 #def_app3a(nc_file='', var_name=None, k=1, l=1, outDir=''):
@@ -133,9 +134,9 @@ def app3(nc_file='', var_name=None, k=1, l=1, outDir=''):
   for kk in dict1.keys():
     print(kk)
 
+  varList = dict1['varList']
   var_name1 = None
   if var_name is None:
-    varList = dict1['varList']
     for v in varList:
         d2 = dict1['varDict'][v]['dim2']
         if (len(d2)>1) and (len(d2)<5):
@@ -144,7 +145,14 @@ def app3(nc_file='', var_name=None, k=1, l=1, outDir=''):
             nD = len(d2)
   else:
     var_name1 = var_name
-
+    try:
+      d2 = dict1['varDict'][var_name]['dim2']
+      nD = len(d2)
+    except:
+      text1 = 'Variable %s does not exist in the file.'%var_name
+      print(text1)
+      mes1 += '\n%s'%text1
+    
   if var_name1 is None:
     mes1 += '\n\n## Cannot figure out which variable to plot.##'
 
